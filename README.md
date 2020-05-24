@@ -1,4 +1,4 @@
-# ParkingLot
+# Parking Lot implementation in Java
 Parking Lot Design Implementation along with Testing
 
 ## Problem Statement
