@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ParkingLotTest$QueryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-24T09:23:05" hostname="anuj" time="0.024">
+  <properties/>
+  <testcase name="testGetSlotNumByColorSuccess()" classname="ParkingLotTest$QueryTest" time="0.004"/>
+  <testcase name="testGetSlotNumByColorFailure()" classname="ParkingLotTest$QueryTest" time="0.003"/>
+  <testcase name="testGetSlotNumByRegNumberSuccess()" classname="ParkingLotTest$QueryTest" time="0.003"/>
+  <testcase name="testGetRegNumByColorSuccess()" classname="ParkingLotTest$QueryTest" time="0.002"/>
+  <testcase name="testGetSlotNumByRegNumberFailure()" classname="ParkingLotTest$QueryTest" time="0.002"/>
+  <testcase name="testGetRegNumByColorFailure()" classname="ParkingLotTest$QueryTest" time="0.002"/>
+  <system-out><![CDATA[Created a parking lot with 6 slots
+Allocated slot number: 1
+1
+Created a parking lot with 6 slots
+Not found
+Created a parking lot with 6 slots
+Allocated slot number: 1
+1
+Created a parking lot with 6 slots
+Allocated slot number: 1
+reg-num
+Created a parking lot with 6 slots
+Not found
+Created a parking lot with 6 slots
+Not found
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
