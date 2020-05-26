@@ -8,19 +8,8 @@ public class ParseInput {
     private ParkingLot parkingLot;
     private Scanner sc;
 
-    public void interactiveMode() {
-        sc = new Scanner(System.in);
-    }
-
-    public Boolean fileMode(String filePath) {
-        try {
-            File file = new File(filePath);
-            sc = new Scanner(file);
-            return true;
-        } catch (FileNotFoundException e) {
-            System.out.println("Invalid file path!");
-            return false;
-        }
+    public ParseInput(Scanner sc) {
+        this.sc = sc;
     }
 
     public void createParkingLot(Integer numberOfSlots) {
@@ -46,7 +35,7 @@ public class ParseInput {
                 switch (command) {
                     case CREATE:
                         Preconditions.checkElementIndex(1, 2, "Argument list not complete.");
-                        int capacity = Integer.valueOf(inputText[1]);
+                        int capacity = Integer.parseInt(inputText[1]);
                         createParkingLot(capacity);
                         break;
                     case PARK:
