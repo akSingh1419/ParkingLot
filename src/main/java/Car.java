@@ -1,9 +1,14 @@
 import javax.inject.Inject;
 
-class Car extends Vehicle {
+class Car implements Vehicle {
+    public String regNumber;
+    public String color;
+    public Slot slotAssociated;
+
     @Inject
     Car(@RegNumValue String regNumber, @ColorValue String color) {
-        super(regNumber, color);
+        this.regNumber = regNumber;
+        this.color = color;
     }
 
     public String getColor() {
