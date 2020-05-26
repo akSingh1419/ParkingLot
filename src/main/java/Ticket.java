@@ -2,8 +2,8 @@ import javax.inject.Inject;
 
 class Ticket {
     private static Integer ticketCounter = 0;
-    private Integer ticketNumber;
-    private Car carAssociated;
+    private final Integer ticketNumber;
+    private final Car carAssociated;
 
     @Inject
     Ticket(Car carAssociated) {

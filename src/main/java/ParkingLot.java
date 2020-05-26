@@ -2,15 +2,20 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Ordering;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeSet;
 
+interface RunCommand {
+    void execute();
+}
+
 class ParkingLot {
-    private Integer numOfSlots;
-    private Slot[] slotList;
-    private TreeSet<Integer> emptySlots;
-    private BiMap<String, Integer> mapRegNumToSlots;
+    private final Integer numOfSlots;
+    private final Slot[] slotList;
+    private final TreeSet<Integer> emptySlots;
+    private final BiMap<String, Integer> mapRegNumToSlots;
 
     ParkingLot(Integer numOfSlots) {
         emptySlots = new TreeSet<Integer>();
@@ -146,5 +151,108 @@ class ParkingLot {
             System.out.println(row);
         }
         System.out.println();
+    }
+}
+
+class BookSlot implements RunCommand {
+    ParkingLot parkingLot;
+    Car car;
+
+    public BookSlot(ParkingLot parkingLot, Car car) {
+        this.parkingLot = parkingLot;
+        this.car = car;
+    }
+
+    @Override
+    public void execute() {
+        parkingLot.bookSlot(car);
+    }
+}
+
+class ClearSlot implements RunCommand {
+    ParkingLot parkingLot;
+    Integer number;
+
+    public ClearSlot(ParkingLot parkingLot, Integer number) {
+        this.parkingLot = parkingLot;
+        this.number = number;
+    }
+
+    @Override
+    public void execute() {
+        parkingLot.clearSlot(number);
+    }
+}
+
+class Status implements RunCommand {
+    ParkingLot parkingLot;
+
+    public Status(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+
+    @Override
+    public void execute() {
+        parkingLot.getStatus();
+    }
+}
+
+class RegNumFromColor implements RunCommand {
+    ParkingLot parkingLot;
+    String color;
+
+    public RegNumFromColor(ParkingLot parkingLot, String color) {
+        this.parkingLot = parkingLot;
+        this.color = color;
+    }
+
+    @Override
+    public void execute() {
+        parkingLot.getRegNumByColor(color);
+    }
+}
+
+class SlotNumFromColor implements RunCommand {
+    ParkingLot parkingLot;
+    String color;
+
+    public SlotNumFromColor(ParkingLot parkingLot, String color) {
+        this.parkingLot = parkingLot;
+        this.color = color;
+    }
+
+    @Override
+    public void execute() {
+        parkingLot.getSlotNumByColor(color);
+    }
+}
+
+class SlotNumFromRegNum implements RunCommand {
+    ParkingLot parkingLot;
+    String regNum;
+
+    public SlotNumFromRegNum(ParkingLot parkingLot, String regNum) {
+        this.parkingLot = parkingLot;
+        this.regNum = regNum;
+    }
+
+    @Override
+    public void execute() {
+        parkingLot.getSlotNumByRegNumber(regNum);
+    }
+}
+
+class ManageParkingLot {
+    RunCommand cmd;
+
+    public ManageParkingLot() {
+    }
+
+    void setCommand(RunCommand cmd) {
+        this.cmd = cmd;
+    }
+
+    void executeCommand() {
+        cmd.execute();
     }
 }

@@ -12,7 +12,7 @@ public enum Command {
     SLOT_NUMS_FROM_COLOR("slot_numbers_for_cars_with_colour"),
     SLOT_NUM_FROM_REG_NUM("slot_number_for_registration_number");
 
-    private static Map<String, Command> mapLineToCommand;
+    private static final Map<String, Command> mapLineToCommand;
 
     static {
         mapLineToCommand = new HashMap<String, Command>();
@@ -21,7 +21,7 @@ public enum Command {
         }
     }
 
-    private String input;
+    private final String input;
 
     Command(String input) {
         this.input = input;
