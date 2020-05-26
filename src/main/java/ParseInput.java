@@ -1,12 +1,14 @@
 import com.google.common.base.Preconditions;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.Scanner;
 
 public class ParseInput {
 
     private ParkingLot parkingLot;
     private Scanner sc;
+
+    public ParseInput() {
+    }
 
     public ParseInput(Scanner sc) {
         this.sc = sc;
@@ -23,6 +25,7 @@ public class ParseInput {
 
     public void manageParkingLot() {
         String input;
+        ManageParkingLot manage = new ManageParkingLot();
         while (sc.hasNextLine()) {
             try {
                 input = sc.nextLine();
@@ -42,27 +45,33 @@ public class ParseInput {
                         Preconditions.checkElementIndex(2, 3, "Argument list not complete.");
                         String regNum = inputText[1];
                         String color = inputText[2];
-                        parkingLot.bookSlot(new Car(regNum, color));
+                        manage.setCommand(new BookSlot(parkingLot, new Car(regNum, color)));
+                        manage.executeCommand();
                         break;
                     case LEAVE:
                         Integer slotNum = Integer.valueOf(inputText[1]);
                         Preconditions.checkElementIndex(1, 2, "Argument list not complete.");
-                        parkingLot.clearSlot(slotNum);
+                        manage.setCommand(new ClearSlot(parkingLot, slotNum));
+                        manage.executeCommand();
                         break;
                     case STATUS:
-                        parkingLot.getStatus();
+                        manage.setCommand(new Status(parkingLot));
+                        manage.executeCommand();
                         break;
                     case REG_NUM_FROM_COLOR:
                         Preconditions.checkElementIndex(1, 2, "Argument list not complete.");
-                        parkingLot.getRegNumByColor(inputText[1]);
+                        manage.setCommand(new RegNumFromColor(parkingLot, inputText[1]));
+                        manage.executeCommand();
                         break;
                     case SLOT_NUMS_FROM_COLOR:
                         Preconditions.checkElementIndex(1, 2, "Argument list not complete.");
-                        parkingLot.getSlotNumByColor(inputText[1]);
+                        manage.setCommand(new SlotNumFromColor(parkingLot, inputText[1]));
+                        manage.executeCommand();
                         break;
                     case SLOT_NUM_FROM_REG_NUM:
                         Preconditions.checkElementIndex(1, 2, "Argument list not complete.");
-                        parkingLot.getSlotNumByRegNumber(inputText[1]);
+                        manage.setCommand(new SlotNumFromRegNum(parkingLot, inputText[1]));
+                        manage.executeCommand();
                         break;
                     default:
                         System.out.println("Invalid command.Try again.");
