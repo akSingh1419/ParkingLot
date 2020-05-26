@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Car Testing")
 class CarTest {
 
-    public static Vehicle car;
+    public static Car car;
     public static String TEST_COLOR = "test-color";
     public static String TEST_REG_NUM = "reg-num";
     public static Slot slot = new Slot(10);
