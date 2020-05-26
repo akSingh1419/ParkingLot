@@ -1,12 +1,17 @@
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        ParseInput parser = new ParseInput();
-        if (args.length > 0) {
-            parser.fileMode(args[0]);
-        } else {
-            parser.interactiveMode();
+        Scanner sc = null;
+        try {
+            sc = InputMode.getScanner(args);
+        } catch (Exception e) {
+            System.out.println("Error arguments not valid.");
+            System.exit(0);
         }
+        ParseInput parser = new ParseInput(sc);
         parser.manageParkingLot();
     }
 }
