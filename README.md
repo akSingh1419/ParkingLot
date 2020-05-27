@@ -65,7 +65,7 @@ Query for getting Parking Slot of a Car with Given Registration Number regNum
 
 ## Running the Program
 
-* File Input Mode : Change the contents of the file input.txt to whatever is required.
+* File Input Mode : Change the contents of the file input.txt to the required input .
 ```
     javac Main.java
     java Main input.txt
